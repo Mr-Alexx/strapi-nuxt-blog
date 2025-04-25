@@ -1,0 +1,31 @@
+{
+  "name": "strapi-nuxt-blog",
+  "version": "1.0.0",
+  "description": "博客系统使用Strapi+Nuxt+UnoCSS，支持中英文国际化",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "pnpm --parallel dev",
+    "dev:b": "pnpm --filter backend develop",
+    "dev:f": "pnpm --filter frontend dev",
+    "build": "pnpm --parallel build",
+    "build:b": "pnpm --filter backend build",
+    "build:f": "pnpm --filter frontend build",
+    "start": "pnpm --parallel start",
+    "start:backend": "pnpm --filter backend start",
+    "start:frontend": "pnpm --filter frontend start"
+  },
+  "keywords": [
+    "strapi",
+    "nuxt",
+    "unocss",
+    "blog",
+    "i18n"
+  ],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.9.0+sha512.0486e394640d3c1fb3c9d43d49cf92879ff74f8516959c235308f5a8f62e2e19528a65cdc2a3058f587cde71eba3d5b56327c8c33a97e4c4051ca48a10ca2d5f"
+}
