@@ -17,7 +17,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
-const strapi = useStrapiClient()
+const strapi = useStrapi()
 
 const props = defineProps({
   contentType: {

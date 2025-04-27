@@ -1,19 +1,19 @@
 <template>
-  <div v-if="headings.length > 0" class="sticky top-24 p-4 bg-white rounded-lg shadow-sm">
-    <h3 class="text-lg font-medium mb-3">{{ $t('article.tableOfContents') }}</h3>
+  <div v-if="toc.links && toc.links.length > 0" class="sticky top-0 p-4 transform-translate-x-100%">
+    <h3 class="text-lg font-medium mb-3">{{ toc.title || $t('article.directory') }}</h3>
     <div class="toc-tree">
       <ul class="space-y-2">
-        <li v-for="(heading, index) in headings" :key="index" class="toc-item">
+        <li v-for="link in toc.links" :key="link.id" class="toc-item">
           <a 
-            :href="`#${heading.id}`" 
+            :href="`#${link.id}`" 
             class="block py-1 transition hover:text-primary text-sm"
             :class="[
-              heading.level === 2 ? 'font-medium' : 'pl-3 text-gray-600',
-              activeHeading === heading.id ? 'text-primary font-medium' : ''
+              link.depth === 2 ? 'font-medium' : 'pl-3 text-gray-600',
+              activeHeading === link.id ? 'text-blue-500 font-medium' : ''
             ]"
-            @click.prevent="scrollToHeading(heading.id)"
+            @click.prevent="scrollToHeading(link.id)"
           >
-            {{ heading.text }}
+            {{ link.text }}
           </a>
         </li>
       </ul>
@@ -26,9 +26,15 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 // 定义组件接收的属性
 const props = defineProps({
-  selector: {
-    type: String,
-    default: '.article-content h2, .article-content h3'
+  toc: {
+    type: Object,
+    required: true,
+    default: () => ({
+      title: '',
+      searchDepth: 2,
+      depth: 2,
+      links: []
+    })
   },
   offset: {
     type: Number,
@@ -36,29 +42,7 @@ const props = defineProps({
   }
 })
 
-const headings = ref([])
 const activeHeading = ref('')
-
-// 提取页面中的标题
-const extractHeadings = () => {
-  const elements = document.querySelectorAll(props.selector)
-  const extractedHeadings = []
-
-  elements.forEach((el) => {
-    // 确保每个标题都有一个 id
-    if (!el.id) {
-      el.id = el.textContent.trim().toLowerCase().replace(/\s+/g, '-')
-    }
-
-    extractedHeadings.push({
-      id: el.id,
-      text: el.textContent,
-      level: parseInt(el.tagName.substring(1), 10)
-    })
-  })
-
-  headings.value = extractedHeadings
-}
 
 // 滚动到指定标题
 const scrollToHeading = (id) => {
@@ -74,8 +58,8 @@ const scrollToHeading = (id) => {
 
 // 监听滚动事件，更新活动标题
 const onScroll = () => {
-  for (let i = headings.value.length - 1; i >= 0; i--) {
-    const id = headings.value[i].id
+  for (let i = props.toc.links.length - 1; i >= 0; i--) {
+    const id = props.toc.links[i].id
     const element = document.getElementById(id)
     
     if (element) {
@@ -89,12 +73,8 @@ const onScroll = () => {
 }
 
 onMounted(() => {
-  // 组件挂载后，给页面内容一些时间渲染，然后提取标题
-  setTimeout(() => {
-    extractHeadings()
-    window.addEventListener('scroll', onScroll)
-    onScroll() // 初始化当前活动标题
-  }, 300)
+  window.addEventListener('scroll', onScroll)
+  onScroll() // 初始化当前活动标题
 })
 
 onUnmounted(() => {

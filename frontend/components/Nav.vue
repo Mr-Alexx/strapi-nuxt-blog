@@ -1,7 +1,7 @@
 <template>
   <!-- 顶部导航栏 -->
-  <header class="sticky top-0 z-50 p-inline-4">
-    <div class="container mt-3 bg-white shadow-sm mx-auto px-4 rounded-md">
+  <header class="sticky top-0 z-50 bg-white">
+    <div class="mx-auto px-4">
       <div class="flex items-center justify-between h-16">
         <!-- 移动端显示的标题/LOGO -->
         <div class="flex md:hidden items-center">
@@ -50,7 +50,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const { t, locale, locales } = useI18n()
+const { t, locale, locales, setLocale } = useI18n()
 const localePath = useLocalePath()
 
 // 处理所有可用的语言
@@ -67,8 +67,7 @@ const currentLocaleName = computed(() => {
 // 切换语言
 const switchLanguage = (code) => {
   if (locale.value === code) return
-  console.log(code)
-  locale.value = code
+  setLocale(code)
 }
 
 const navItems = [

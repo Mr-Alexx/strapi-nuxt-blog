@@ -1,35 +1,34 @@
 <template>
-  <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-    <div @click="test">test</div>
+  <div class="shadow-sm overflow-hidden">
     <!-- 文章列表 -->
     <div class="p-8 md:p-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div v-for="article in articles" :key="article.id" class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <h3 class="text-lg font-bold mb-2">{{ article.title }}</h3>
-          <p class="text-gray-600 mb-4">{{ article.description }}</p> 
-        </div>
-      </div>  
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <NuxtLink v-for="article in articles" :key="article.id"
+          class="bg-white p-6 rounded-lg border border-gray-100 border-solid" :to="localePath(`/post/${article.slug}`)">
+          <LazyNuxtImg :src="article.image" class="w-full h-40 object-cover rounded-lg mb-4" />
+          <div class="text-lg font-bold mb-2">{{ article.title }}</div>
+          <div class="text-gray-600 mb-4">{{ article.description }}</div>
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { onMounted, onBeforeMount } from 'vue'
+import { onMounted } from 'vue'
 
-const test = () => {
-  console.log('fuckdd')
-}
+const localePath = useLocalePath()
+const { locale } = useI18n()
 
 // 从strapi api中获取文章列表
 const strapi = useStrapi()
 const { data, loading, error } = await useAsyncData('articles', async () => {
   try {
     const data = await strapi.find('articles', {
-      // populate: ['*'],
-      // filters: {
-      //   status: 'published'
-      // }
+      filters: {
+        locale: locale.value
+      }
     })
     return data
   } catch (error) {
@@ -50,4 +49,4 @@ onMounted(() => {
   console.log(articles.value)
   console.log(pagination.value)
 })
-</script> 
+</script>

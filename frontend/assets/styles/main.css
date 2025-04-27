@@ -7,7 +7,7 @@
   --color-secondary: #64748b;
   --color-secondary-light: #94a3b8;
   --color-secondary-dark: #475569;
-  --color-bg: #f8fafc;
+  --color-bg: #f3f4f6;
   --color-text: #1e293b;
   --color-text-light: #64748b;
   --color-border: #e2e8f0;
@@ -45,6 +45,10 @@ a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color 0.2s ease;
+}
+
+a:focus {
+  outline: none;
 }
 
 a:hover {

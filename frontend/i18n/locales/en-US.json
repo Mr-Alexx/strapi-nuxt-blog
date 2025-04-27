@@ -21,6 +21,8 @@
   "copyright": "Copyright © {year} DevTT. All rights reserved.",
   "navigation": "Navigation",
   "followUs": "Follow Us",
+  "serverError": "Server Error",
+  "backToHome": "Back to Home",
 
   "sideContent.job": "Frontend Developer",
   "sideContent.location": "Location",
@@ -34,7 +36,7 @@
   "nav.about": "About",
 
   "article.backToHome": "Back to Home",
-  "article.tableOfContents": "Table of Contents",
+  "article.directory": "Directory",
   "article.relatedArticles": "Related Articles",
   "article.minutesRead": "Minutes Read",
   "article.tags": "Tags",

@@ -3,20 +3,46 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-04-01',
   devtools: { enabled: true },
 
-  vite: {
-    hmr: {
-      overlay: false,
-      hot: true,
-      clientPort: 3000,
+  // 添加需要的模块
+  modules: [
+    '@nuxtjs/mdc',
+    '@unocss/nuxt',
+    '@nuxtjs/i18n',
+    '@nuxtjs/strapi',
+    "@nuxt/image",
+  ],
+
+  mdc: {
+    components: {
+      prose: true,  // 启用 Markdown 渲染的散文组件，支持渲染段落、标题等
+    },
+    headings: {
+      anchorLinks: {
+        // Enable/Disable heading anchor links. { h1: true, h2: false }
+        h1: true,
+        h2: true,
+        h3: true
+      }
+    },
+    highlight: {
+      theme: 'monokai',  // 选择高亮主题，可以选择其他如 'github'、'dracula' 等
     }
   },
 
-  // 添加需要的模块
-  modules: [
-    '@unocss/nuxt',
-    '@nuxtjs/i18n',
-    '@nuxtjs/strapi'
-  ],
+  // nuxtMarkdownRender: {
+  //   as: 'article', // default 'div'
+  //   component: 'NotNuxtMarkdown', // false to disable Nuxt's auto import
+  //   options: {
+  //     html: false // default true
+  //   },
+  //   plugins: {
+  //     mdc: false // default mdc options object
+  //     anchor: {
+  //       level: 2 // default 1
+  //     }
+  //   }
+  //   vueRuntimeCompiler: false // default true
+  // }
 
   // UnoCSS 配置
   unocss: {
@@ -62,17 +88,17 @@ export default defineNuxtConfig({
   i18n: {
     locales: [
       {
-        code: 'zh',
+        code: 'zh-Hans',
         name: '中文',
-        file: 'zh-CN.json'
+        file: 'zh-Hans.json'
       },
       {
         code: 'en',
-        name: 'English',
+        name: 'EN',
         file: 'en-US.json'
       }
     ],
-    defaultLocale: 'zh', // 默认使用中文
+    defaultLocale: 'zh-Hans', // 默认使用中文
     strategy: 'prefix_except_default',
     lazy: true,
     langDir: './locales/',
@@ -86,6 +112,7 @@ export default defineNuxtConfig({
   strapi: {
     url: process.env.STRAPI_URL || 'http://localhost:9137',
     prefix: '/api',
+    admin: '/admin',
     version: 'v5',
     cookie: {},
     cookieName: 'strapi_jwt'

@@ -2221,22 +2221,16 @@ packages:
     peerDependencies:
       '@electric-sql/pglite': '*'
       '@libsql/client': '*'
-      better-sqlite3: '*'
       drizzle-orm: '*'
       mysql2: '*'
-      sqlite3: '*'
     peerDependenciesMeta:
       '@electric-sql/pglite':
         optional: true
       '@libsql/client':
         optional: true
-      better-sqlite3:
-        optional: true
       drizzle-orm:
         optional: true
       mysql2:
-        optional: true
-      sqlite3:
         optional: true
 
   debug@3.2.7:
@@ -9532,7 +9526,6 @@ snapshots:
       - '@vercel/blob'
       - '@vercel/kv'
       - aws4fetch
-      - better-sqlite3
       - drizzle-orm
       - encoding
       - idb-keyval
@@ -9705,7 +9698,6 @@ snapshots:
       - '@vercel/blob'
       - '@vercel/kv'
       - aws4fetch
-      - better-sqlite3
       - bufferutil
       - db0
       - drizzle-orm

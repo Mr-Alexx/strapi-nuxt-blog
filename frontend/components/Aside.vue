@@ -1,6 +1,6 @@
 <template>
   <!-- 左侧个人信息面板 - PC端显示，移动端隐藏 -->
-  <aside class="scroll-auto md:flex md:flex-col md:w-80 bg-white shadow-md p-8 top-0 fixed h-screen overflow-auto">
+  <aside class="scroll-auto md:flex md:flex-col bg-white shadow-md py-4 top-0 sticky overflow-auto mt-6 self-start">
     <div class="flex flex-col items-center mb-6">
       <div @click="test" class="flex items-center justify-center w-40 h-40 rounded-full overflow-hidden mb-4 bg-blue-500 text-white text-7xl">
         <span>潜</span>

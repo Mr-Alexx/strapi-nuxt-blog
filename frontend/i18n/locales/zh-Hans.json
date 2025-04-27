@@ -21,7 +21,8 @@
   "copyright": "版权所有 © {year} DevTT. 保留所有权利。",
   "navigation": "导航",
   "followUs": "关注我们",
-  
+  "serverError": "服务器错误",
+  "backToHome": "返回首页",
   "sideContent.job": "前端开发工程师",
   "sideContent.location": "所在城市",
   "sideContent.phone": "联系电话",
@@ -34,7 +35,7 @@
   "nav.about": "关于我",
 
   "article.backToHome": "返回首页",
-  "article.tableOfContents": "文章目录",
+  "article.directory": "目录",
   "article.relatedArticles": "相关文章",
   "article.minutesRead": "分钟阅读",
   "article.tags": "标签",
