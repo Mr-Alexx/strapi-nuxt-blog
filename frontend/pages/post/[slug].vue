@@ -6,12 +6,8 @@
         <!-- 文章标题和元信息 -->
         <div class="mb-8">
           <h1 class="text-3xl text-center font-bold mb-4">{{ data.title }}</h1>
-          <div class="flex justify-center items-center text-sm text-gray-500 mb-4">
-            <span class="mr-4">{{ formatDate(data.publishedAt) }}</span>
-            <span v-if="data.readingTime" class="flex items-center">
-              <span class="i-carbon-time mr-1"></span>
-              {{ data.readingTime }} {{ $t('article.minutesRead') }}
-            </span>
+          <div class="text-center mb-4">
+            <I18nDatetime :value="data.publishedAt" />
           </div>
 
           <!-- 标签列表 -->
@@ -50,17 +46,7 @@ const { locale } = useI18n()
 
 const layoutToc = useState('layoutToc', () => ({}))
 
-// 日期格式化函数
-const formatDate = (dateStr) => {
-  if (!dateStr) return ''
 
-  const date = new Date(dateStr)
-  return new Intl.DateTimeFormat('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }).format(date)
-}
 
 const strapi = useStrapi()
 const { data } = await useAsyncData('article', async () => {
