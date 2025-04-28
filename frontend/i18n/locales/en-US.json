@@ -23,6 +23,9 @@
   "followUs": "Follow Us",
   "serverError": "Server Error",
   "backToHome": "Back to Home",
+  "loadMore.loading": "Loading...",
+  "loadMore.loadMore": "Load More",
+  "loadMore.noMore": "No More",
 
   "sideContent.job": "Frontend Developer",
   "sideContent.location": "Location",

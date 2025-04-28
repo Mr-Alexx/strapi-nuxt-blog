@@ -28,6 +28,9 @@
   "sideContent.phone": "联系电话",
   "sideContent.email": "电子邮箱",
   "sideContent.github": "Github",
+  "loadMore.loading": "加载中...",
+  "loadMore.loadMore": "加载更多",
+  "loadMore.noMore": "没有更多了",
 
   "nav.blog": "博客",
   "nav.timeline": "归档",
