@@ -1,5 +1,5 @@
 <template>
-  <div class="w-1080px m-inline-auto min-h-screen flex flex-col gap-6 md:flex-row bg-gray-100">
+  <div class="w-1200px m-inline-auto min-h-screen flex flex-col gap-6 md:flex-row bg-gray-100">
     <!-- 侧栏 -->
     <aside class="flex-shrink-0 w-300px rounded-xl mt-6 flex flex-col gap-6">
       <!-- 个人介绍信息 -->
@@ -11,11 +11,11 @@
     </aside>
 
     <div class="flex-1 min-w-0 mt-6">
-      <Nav class="rounded-t-xl" />
+      <Nav class="rounded-t-xl border-b border-b-solid border-gray-200" />
       <!-- 内容区域 -->
-      <main class="rounded-b-xl bg-white shadow-md p4">
+      <main class="rounded-b-xl bg-white shadow-md p4 md:p6">
         
-        <div class="mx-auto py-4">
+        <div class="mx-auto">
           <!-- 主内容slot -->
           <slot />
         </div>
