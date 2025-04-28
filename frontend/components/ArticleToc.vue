@@ -4,11 +4,11 @@
       <b>{{ $t('article.directory') }}</b>
       <span class="text-gray-500 text-13px cursor-pointer flex gap-1 items-center" @click="isCollapse = !isCollapse">
         {{$t(isCollapse ? 'article.toc.expand' : 'article.toc.collapse')}}
-        <i :class="isCollapse ? 'arrow-down' : 'arrow-up'"></i>
+        <SvgIcon icon="arrow-up" :class="isCollapse ? 'rotate-180' : ''"></SvgIcon>
       </span>
     </div>
-    <div ref="tocContainer" class="max-h-400px px-4 p-block-2 border-t-1px border-t-solid border-t-gray-200 transition-all scrollbar-custom" :class="isCollapse ? 'h-0 overflow-hidden pt-0 border-t-transparent' : 'h-350px overflow-y-auto'">
-      <ul class="py-4 space-y-2">
+    <div ref="tocContainer" class="h-350px border-t-1px border-t-solid border-t-gray-200 transition-all" :class="isCollapse ? 'h-0 px-0 pt-0 border-t-transparent' : 'py-4 pl-4'">
+      <ul class="h-full scrollbar-custom overflow-y-auto overflow-x-hidden">
         <li v-for="link in flatToc" :key="link.id" class="toc-item" :class="[{'is-actived': activeHeading === link.id}]" :style="{'padding-left': `${link.depth - 2}em`}" :id="`toc-${link.id}`">
           <a 
             :href="`#${link.id}`" 
@@ -197,24 +197,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.arrow-up,
-.arrow-down {
-  width: 6px;
-  height: 6px;
-  border: 1px solid #ccc;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-  border-radius: 2px;
-}
-
-.arrow-up {
-  transform: rotateZ(45deg);
-}
-
-.arrow-down {
-  transform: rotateZ(-135deg);
-}
-
 .toc-item {
   position: relative;
   list-style:none;
