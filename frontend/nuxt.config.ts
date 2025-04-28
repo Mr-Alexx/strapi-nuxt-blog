@@ -88,17 +88,17 @@ export default defineNuxtConfig({
   i18n: {
     locales: [
       {
-        code: 'zh-Hans',
-        name: '中文',
-        file: 'zh-Hans.json'
+        code: 'zh-CN',
+        name: '简体中文',
+        file: 'zh-CN.json'
       },
       {
-        code: 'en',
-        name: 'EN',
+        code: 'en-US',
+        name: 'English',
         file: 'en-US.json'
       }
     ],
-    defaultLocale: 'zh-Hans', // 默认使用中文
+    defaultLocale: 'zh-CN', // 默认使用中文
     strategy: 'prefix_except_default',
     lazy: true,
     langDir: './locales/',
