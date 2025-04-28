@@ -2,40 +2,31 @@
   <div v-if="data">
     <div class="flex flex-col gap-4 relative">
       <!-- 文章主体 -->
-      <div class="w-full">
-        <article>
-          <!-- 文章标题和元信息 -->
-          <div class="mb-8">
-            <h1 class="text-3xl text-center font-bold mb-4">{{ data.title }}</h1>
-            <div class="flex justify-center items-center text-sm text-gray-500 mb-4">
-              <span class="mr-4">{{ formatDate(data.publishedAt) }}</span>
-              <span v-if="data.readingTime" class="flex items-center">
-                <span class="i-carbon-time mr-1"></span>
-                {{ data.readingTime }} {{ $t('article.minutesRead') }}
-              </span>
-            </div>
-
-            <!-- 标签列表 -->
-            <div v-if="data.tags && data.tags.data.length > 0" class="flex flex-wrap gap-2 mb-6">
-              <NuxtLink v-for="tag in data.tags.data" :key="tag.id" :to="`/tags/${tag.attributes.slug}`"
-                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs hover:bg-gray-200 transition">
-                {{ tag.attributes.name }}
-              </NuxtLink>
-            </div>
+      <article class="w-full">
+        <!-- 文章标题和元信息 -->
+        <div class="mb-8">
+          <h1 class="text-3xl text-center font-bold mb-4">{{ data.title }}</h1>
+          <div class="flex justify-center items-center text-sm text-gray-500 mb-4">
+            <span class="mr-4">{{ formatDate(data.publishedAt) }}</span>
+            <span v-if="data.readingTime" class="flex items-center">
+              <span class="i-carbon-time mr-1"></span>
+              {{ data.readingTime }} {{ $t('article.minutesRead') }}
+            </span>
           </div>
 
-          <div class="flex">
-            <!-- 文章内容 -->
-          <ArticleContent class="p-4 flex-grow">
-            <MDCRenderer v-if="data.html" :body="data.html.body" :data="data.html.data" :toc="data.html.toc" />
-          </ArticleContent>
-          <!-- 文章目录 -->
-          <client-only>
-            <ArticleToc class="w-200px" :toc="data.html.toc" />
-          </client-only>
+          <!-- 标签列表 -->
+          <div v-if="data.tags && data.tags.data.length > 0" class="flex flex-wrap gap-2 mb-6">
+            <NuxtLink v-for="tag in data.tags.data" :key="tag.id" :to="`/tags/${tag.attributes.slug}`"
+              class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs hover:bg-gray-200 transition">
+              {{ tag.attributes.name }}
+            </NuxtLink>
           </div>
-        </article>
-      </div>
+        </div>
+        <!-- 文章内容 -->
+        <ArticleContent>
+          <MDCRenderer v-if="data.html" :body="data.html.body" :data="data.html.data" :toc="data.html.toc" />
+        </ArticleContent>
+      </article>
     </div>
   </div>
   <div v-else class="py-20 text-center">
@@ -51,11 +42,13 @@
 import { useRoute } from 'vue-router'
 import { computed, onMounted, toRaw } from 'vue'
 import { parseMarkdown } from '@nuxtjs/mdc/runtime';
-import { useI18n } from 'vue-i18n'  
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const slug = route.params.slug
 const { locale } = useI18n()
+
+const layoutToc = useState('layoutToc', () => ({}))
 
 // 日期格式化函数
 const formatDate = (dateStr) => {
@@ -79,9 +72,12 @@ const { data } = await useAsyncData('article', async () => {
       },
       // populate: ['*']
     })
+    const html = await parseMarkdown(data[0].content)
+
+    layoutToc.value = html.toc
     return {
       ...data[0],
-      html: await parseMarkdown(data[0].content)
+      html
     }
   } catch (error) {
     console.error(error)

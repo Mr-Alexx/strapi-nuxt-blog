@@ -18,7 +18,7 @@
   "submit": "Submit",
   "address": "Address",
   "phone": "Phone",
-  "copyright": "Copyright © {year} DevTT. All rights reserved.",
+  "copyright": "Copyright © {year} izoro.top All rights reserved.",
   "navigation": "Navigation",
   "followUs": "Follow Us",
   "serverError": "Server Error",
@@ -43,6 +43,8 @@
   "article.share": "Share",
   "article.author": "Author",
   "article.publishedOn": "Published On",
+  "article.toc.collapse": "Collapse",
+  "article.toc.expand": "Expand",
 
   "error.articleNotFound": "Article Not Found",
   "error.articleNotFoundDesc": "Sorry, the article you are looking for does not exist or has been deleted.",

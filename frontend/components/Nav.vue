@@ -14,7 +14,8 @@
             v-for="item in navItems" 
             :key="item.path" 
             :to="localePath(item.path)" 
-            :class="[$route.path === localePath(item.path) ? 'text-blue-600 font-medium' : 'text-gray-700 hover:text-blue-600']"
+            class="px-2 py-1 rounded-tl-12px rounded-br-12px rounded-tr-1px rounded-bl-1px hover:text-white"
+            :class="[getActived(item.path) ? 'text-white font-medium bg-primary-100' : 'text-gray-700 hover:bg-primary-50']"
           >
             {{ $t(item.key) }}
           </NuxtLink>
@@ -68,6 +69,13 @@ const currentLocaleName = computed(() => {
 const switchLanguage = (code) => {
   if (locale.value === code) return
   setLocale(code)
+}
+
+const getActived = (path) => {
+  if (path === '/') {
+    return route.path.includes('/post/') || route.path === localePath(path)
+  }
+  return route.path === localePath(path)
 }
 
 const navItems = [

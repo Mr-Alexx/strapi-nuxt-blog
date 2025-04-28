@@ -1,32 +1,41 @@
 <template>
   <div class="w-1080px m-inline-auto min-h-screen flex flex-col gap-6 md:flex-row bg-gray-100">
-    <!-- 内容区域 -->
-    <main class="flex-grow overflow-hidden mt-6 rounded-xl">
-      <Nav />
+    <!-- 侧栏 -->
+    <aside class="flex-shrink-0 w-300px rounded-xl mt-6 flex flex-col gap-6">
+      <!-- 个人介绍信息 -->
+      <Intro v-if="!isPostDetail" class="shadow-md max-h-95% sticky"/>
 
-      <div class="mx-auto py-4 bg-white">
-        <slot />
-      </div>
+      <!-- 文章目录slot -->
+      <ArticleToc v-else class="w-200px shadow-md" :toc="tocData" />
+
+    </aside>
+
+    <div class="flex-1 min-w-0 mt-6">
+      <Nav class="rounded-t-xl" />
+      <!-- 内容区域 -->
+      <main class="rounded-b-xl bg-white shadow-md p4">
+        
+        <div class="mx-auto py-4">
+          <!-- 主内容slot -->
+          <slot />
+        </div>
+      </main>
 
       <!-- 页脚 -->
-      <footer class="m-block-4">
-        <div class="mx-auto text-center text-gray-500 text-sm">
-          <p>{{ $t('copyright', { year: yearStr }) }}</p>
-          <p class="mt-1">{{ copyright }}</p>
-        </div>
-      </footer>
-    </main>
+      <Footer/>
+    </div>
 
-    <!-- 侧栏 -->
-    <Aside class="flex-shrink-0 w-280px rounded-xl" />
+    <!-- 回到顶部按钮 -->
+    <BackTop :visibility-height="200" />
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-const copyright = ref('蜀ICP备222')
-const yearStr = computed(() => {
-  const currentYear = new Date().getFullYear()
-  return currentYear > 2025 ? `2025-${currentYear}` : currentYear
+const route = useRoute()
+
+const isPostDetail = computed(() => {
+  return useRoute().path.includes('/post/')
 })
+
+const tocData = useState('layoutToc')
 </script>
