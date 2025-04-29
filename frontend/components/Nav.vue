@@ -60,7 +60,7 @@ const getActived = (path) => {
 
 const navItems = [
   { path: '/', key: 'nav.blog' },
-  { path: '/timeline', key: 'nav.timeline' },
+  { path: '/archive', key: 'nav.timeline' },
   { path: '/bascketball', key: 'nav.bascketball' },
   { path: '/about', key: 'nav.about' },
 ]
