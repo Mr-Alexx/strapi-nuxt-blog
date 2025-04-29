@@ -58,7 +58,7 @@ const randomColor = () => {
   const b = Math.floor(Math.random() * 256)
 
   const background = `rgb(${r}, ${g}, ${b})`
-  
+
   const color = isDarkColor(r, g, b) ? '#fff' : '#000'
 
   return { background, color }
@@ -66,7 +66,7 @@ const randomColor = () => {
 
 onMounted(() => {
   const { background, color } = randomColor()
-  
+
   styles.value.color = color
   styles.value.background = background
 })
@@ -149,7 +149,6 @@ onMounted(() => {
   padding: 8px 16px;
   border-radius: 12px 1px;
   display: inline-flex;
-  color: #fff !important;
 }
 
 .timeline-item__content .link:hover {

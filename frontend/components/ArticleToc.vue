@@ -3,19 +3,18 @@
     <div class="text-lg font-medium p-4 flex justify-between">
       <b>{{ $t('article.directory') }}</b>
       <span class="text-gray-500 text-13px cursor-pointer flex gap-1 items-center" @click="isCollapse = !isCollapse">
-        {{$t(isCollapse ? 'article.toc.expand' : 'article.toc.collapse')}}
-        <SvgIcon icon="arrow-up" :class="isCollapse ? 'rotate-180' : ''"></SvgIcon>
+        {{ $t(isCollapse ? 'article.toc.expand' : 'article.toc.collapse') }}
+        <nuxt-icon name="arrow-up" :class="isCollapse ? 'rotate-180' : ''" />
       </span>
     </div>
-    <div ref="tocContainer" class="h-350px border-t-1px border-t-solid border-t-gray-200 transition-all" :class="isCollapse ? 'h-0 px-0 pt-0 border-t-transparent' : 'py-4 pl-4'">
+    <div ref="tocContainer" class="h-350px border-t-1px border-t-solid border-t-gray-200 transition-all"
+      :class="isCollapse ? 'h-0 px-0 pt-0 border-t-transparent' : 'py-4 pl-4'">
       <ul class="h-full scrollbar-custom overflow-y-auto overflow-x-hidden">
-        <li v-for="link in flatToc" :key="link.id" class="toc-item" :class="[{'is-actived': activeHeading === link.id}]" :style="{'padding-left': `${link.depth - 2}em`}" :id="`toc-${link.id}`">
-          <a 
-            :href="`#${link.id}`" 
-            class="block py-1 transition hover:text-primary text-sm"
-            :class="{'text-gray-600': link.depth === 4}"
-            @click="scrollToHeading(link.id)"
-          >
+        <li v-for="link in flatToc" :key="link.id" class="toc-item"
+          :class="[{ 'is-actived': activeHeading === link.id }]" :style="{ 'padding-left': `${link.depth - 2}em` }"
+          :id="`toc-${link.id}`">
+          <a :href="`#${link.id}`" class="block py-1 transition hover:text-primary text-sm"
+            :class="{ 'text-gray-600': link.depth === 4 }" @click="scrollToHeading(link.id)">
             {{ link.text }}
           </a>
         </li>
@@ -25,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 
 const route = useRoute()
 const tocContainer = ref(null)
@@ -86,7 +85,7 @@ const scrollToHeading = (id) => {
 // 滚动目录到活跃项
 const scrollTocToActiveItem = () => {
   if (!activeHeading.value || isCollapse.value || !tocContainer.value) return
-  
+
   // 获取目录中的活跃项元素
   const activeItem = document.getElementById(`toc-${activeHeading.value}`)
   if (activeItem) {
@@ -94,7 +93,7 @@ const scrollTocToActiveItem = () => {
     const containerHeight = tocContainer.value.clientHeight
     const activeItemTop = activeItem.offsetTop
     const scrollTo = activeItemTop - (containerHeight / 2) + (activeItem.clientHeight / 2)
-    
+
     // 平滑滚动到计算位置
     tocContainer.value.scrollTo({
       top: Math.max(0, scrollTo),
@@ -110,15 +109,15 @@ const onScroll = () => {
 
   // 1. 收集所有可见标题的信息
   const visibleHeadings = []
-  
+
   for (const heading of allHeadings) {
     const element = document.getElementById(heading.id)
     if (!element) continue
-    
+
     const rect = element.getBoundingClientRect()
     // 计算标题顶部到视口顶部的距离 (考虑 offset)
     const topOffset = rect.top - props.offset
-    
+
     // 保存标题信息，包括位置和ID
     visibleHeadings.push({
       id: heading.id,
@@ -131,40 +130,40 @@ const onScroll = () => {
       rect
     })
   }
-  
+
   if (visibleHeadings.length === 0) return
-  
+
   // 2. 确定应该激活的标题
 
   // 检查是否滚动到页面底部
   const isNearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 80
-  
+
   // 如果滚动到底部，激活最后一个标题
   if (isNearBottom) {
     activeHeading.value = allHeadings[allHeadings.length - 1].id
     return
   }
-  
+
   // 找到位于视口顶部最近的标题
   // 方法：找到所有在视口顶部之上或接近顶部的标题中，最靠近顶部的一个
   const headingsAboveViewport = visibleHeadings.filter(h => h.aboveViewport)
-  
+
   if (headingsAboveViewport.length > 0) {
     // 找出最接近视口顶部的标题（topOffset最大的负值）
-    const closestHeading = headingsAboveViewport.reduce((prev, current) => 
+    const closestHeading = headingsAboveViewport.reduce((prev, current) =>
       (prev.topOffset > current.topOffset) ? prev : current
     )
     activeHeading.value = closestHeading.id
     return
   }
-  
+
   // 如果没有标题在视口顶部之上，则激活第一个可见的标题
   const firstVisibleHeading = visibleHeadings.find(h => h.visible)
   if (firstVisibleHeading) {
     activeHeading.value = firstVisibleHeading.id
     return
   }
-  
+
   // 默认情况：激活第一个标题
   activeHeading.value = allHeadings[0].id
 }
@@ -179,7 +178,7 @@ watch(activeHeading, () => {
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll)
-  
+
   // 如果URL中有hash，滚动到对应位置并激活对应标题
   if (route.hash) {
     const hashId = route.hash.slice(1)
@@ -199,8 +198,9 @@ onUnmounted(() => {
 <style scoped>
 .toc-item {
   position: relative;
-  list-style:none;
+  list-style: none;
 }
+
 .toc-item:after {
   content: '';
   position: absolute;
@@ -214,10 +214,12 @@ onUnmounted(() => {
   z-index: 1;
   border-radius: 2px;
 }
+
 .toc-item.is-actived {
   color: var(--color-primary);
 }
+
 .toc-item.is-actived:after {
   opacity: 1;
 }
-</style> 
+</style>

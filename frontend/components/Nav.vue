@@ -7,20 +7,16 @@
         <div class="flex md:hidden items-center">
           <h1 class="text-xl font-bold">Alex</h1>
         </div>
-        
+
         <!-- 导航链接 -->
         <nav class="flex space-x-6">
-          <NuxtLink 
-            v-for="item in navItems" 
-            :key="item.path" 
-            :to="localePath(item.path)" 
+          <NuxtLink v-for="item in navItems" :key="item.path" :to="localePath(item.path)"
             class="px-2 py-1 rounded-tl-12px rounded-br-12px rounded-tr-1px rounded-bl-1px hover:text-white"
-            :class="[getActived(item.path) ? 'text-white font-medium bg-primary-100' : 'text-gray-700 hover:bg-primary-50']"
-          >
+            :class="[getActived(item.path) ? 'text-white font-medium bg-primary-100' : 'text-gray-700 hover:bg-primary-50']">
             {{ $t(item.key) }}
           </NuxtLink>
         </nav>
-        
+
         <!-- 语言切换 -->
         <div class="relative group text-gray-500 text-14px">
           <span class="flex items-center cursor-pointer hover:text-blue-600 transition-colors">
@@ -33,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -61,7 +57,8 @@ const getActived = (path) => {
 const navItems = [
   { path: '/', key: 'nav.blog' },
   { path: '/archive', key: 'nav.timeline' },
-  { path: '/bascketball', key: 'nav.bascketball' },
+  // { path: '/bascketball', key: 'nav.bascketball' },
+  { path: '/projects', key: 'nav.projects' },
   { path: '/about', key: 'nav.about' },
 ]
-</script> 
+</script>
