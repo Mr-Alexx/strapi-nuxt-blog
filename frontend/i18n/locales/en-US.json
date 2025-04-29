@@ -49,9 +49,22 @@
   "article.toc.collapse": "Collapse",
   "article.toc.expand": "Expand",
 
+  "archive.start": "Start",
+
   "error.articleNotFound": "Article Not Found",
   "error.articleNotFoundDesc": "Sorry, the article you are looking for does not exist or has been deleted.",
 
   "common.backToHome": "Back to Home",
-  "common.loading": "Loading..."
+  "common.loading": "Loading...",
+
+  "archive.title": "Archives",
+  "archive.pageTitle": "Article Archives | Blog",
+  "archive.pageDescription": "Browse all blog posts by date in the archives",
+  "archive.loading": "Loading archives...",
+  "archive.noData": "No articles found",
+  "archive.useMockData": "Using Mock Data",
+  "archive.useRealData": "Using Real Data",
+  "archive.totalArticles": "Nice!Nice! Currently there are {count} articles. Keep going!",
+  "archive.year": "",
+  "archive.day": ""
 } 
