@@ -37,6 +37,7 @@
   "nav.timeline": "Timeline",
   "nav.bascketball": "Basketball",
   "nav.about": "About",
+  "nav.projects": "Projects",
 
   "article.backToHome": "Back to Home",
   "article.directory": "Directory",
@@ -66,5 +67,8 @@
   "archive.useRealData": "Using Real Data",
   "archive.totalArticles": "Nice!Nice! Currently there are {count} articles. Keep going!",
   "archive.year": "",
-  "archive.day": ""
+  "archive.day": "",
+
+  "projects.title": "My Projects",
+  "projects.description": "Showcase some of my important projects"
 } 

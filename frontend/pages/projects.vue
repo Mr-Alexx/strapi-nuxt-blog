@@ -1,18 +1,21 @@
 <template>
   <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
     <!-- 页面标题区域 -->
-    <section class="p-8 border-b border-gray-100">
-      <h1 class="text-3xl font-bold">我的项目</h1>
-      <p class="text-gray-500 mt-2">展示我参与和主导的一些重要项目</p>
+    <section class="border-b border-gray-100">
+      <h1 class="text-3xl font-bold">{{ $t('projects.title') }}</h1>
+      <p class="text-gray-500 mt-2">{{ $t('projects.description') }}</p>
     </section>
 
     <!-- 项目展示部分 -->
     <div class="p-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- 项目卡片1 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
+        <div
+          class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
           <div class="h-48 bg-gray-200 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="电商平台项目" class="w-full h-full object-cover">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="电商平台项目" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-bold text-lg mb-2">企业级电商平台</h3>
@@ -30,9 +33,12 @@
         </div>
 
         <!-- 项目卡片2 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
+        <div
+          class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
           <div class="h-48 bg-gray-200 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="数据可视化项目" class="w-full h-full object-cover">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="数据可视化项目" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-bold text-lg mb-2">数据可视化分析平台</h3>
@@ -50,9 +56,12 @@
         </div>
 
         <!-- 项目卡片3 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
+        <div
+          class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
           <div class="h-48 bg-gray-200 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="社交应用项目" class="w-full h-full object-cover">
+            <img
+              src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="社交应用项目" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-bold text-lg mb-2">社交媒体应用</h3>
@@ -70,9 +79,12 @@
         </div>
 
         <!-- 项目卡片4 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
+        <div
+          class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
           <div class="h-48 bg-gray-200 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="CRM系统项目" class="w-full h-full object-cover">
+            <img
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="CRM系统项目" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-bold text-lg mb-2">企业CRM系统</h3>
@@ -90,9 +102,12 @@
         </div>
 
         <!-- 项目卡片5 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
+        <div
+          class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
           <div class="h-48 bg-gray-200 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="AI助手项目" class="w-full h-full object-cover">
+            <img
+              src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="AI助手项目" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-bold text-lg mb-2">AI智能助手应用</h3>
@@ -110,9 +125,12 @@
         </div>
 
         <!-- 项目卡片6 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
+        <div
+          class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition duration-300">
           <div class="h-48 bg-gray-200 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="在线教育平台项目" class="w-full h-full object-cover">
+            <img
+              src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="在线教育平台项目" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-bold text-lg mb-2">在线教育平台</h3>
@@ -137,8 +155,10 @@
       <div class="space-y-4">
         <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           <div class="flex items-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 mr-2" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <h3 class="font-bold text-lg">Vue组件库</h3>
           </div>
@@ -150,14 +170,17 @@
               <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Vue.js</span>
               <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">TypeScript</span>
             </div>
-            <a href="https://github.com/username/repo" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-medium">GitHub →</a>
+            <a href="https://github.com/username/repo" target="_blank"
+              class="text-blue-600 hover:text-blue-800 text-sm font-medium">GitHub →</a>
           </div>
         </div>
 
         <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           <div class="flex items-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 mr-2" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             <h3 class="font-bold text-lg">前端工程化工具</h3>
           </div>
@@ -169,7 +192,8 @@
               <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">Node.js</span>
               <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">JavaScript</span>
             </div>
-            <a href="https://github.com/username/repo" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-medium">GitHub →</a>
+            <a href="https://github.com/username/repo" target="_blank"
+              class="text-blue-600 hover:text-blue-800 text-sm font-medium">GitHub →</a>
           </div>
         </div>
       </div>
@@ -179,4 +203,4 @@
 
 <script setup>
 // 项目页面逻辑
-</script> 
+</script>

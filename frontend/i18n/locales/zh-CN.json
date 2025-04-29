@@ -36,7 +36,7 @@
   "nav.timeline": "归档",
   "nav.bascketball": "篮球",
   "nav.about": "关于我",
-
+  "nav.projects": "项目",
   "article.backToHome": "返回首页",
   "article.directory": "目录",
   "article.relatedArticles": "相关文章",
@@ -64,5 +64,8 @@
   "archive.useRealData": "使用真实数据",
   "archive.totalArticles": "不错！不错！目前共计 {count} 篇文章，继续加油！",
   "archive.year": "年",
-  "archive.day": "日"
+  "archive.day": "日",
+
+  "projects.title": "我的项目",
+  "projects.description": "展示我参与和主导的一些重要项目"
 } 
