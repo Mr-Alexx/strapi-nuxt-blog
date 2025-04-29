@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/strapi',
     "@nuxt/image",
+    "nuxt-icons"
   ],
 
   mdc: {
@@ -28,21 +29,6 @@ export default defineNuxtConfig({
       theme: 'monokai',  // 选择高亮主题，可以选择其他如 'github'、'dracula' 等
     }
   },
-
-  // nuxtMarkdownRender: {
-  //   as: 'article', // default 'div'
-  //   component: 'NotNuxtMarkdown', // false to disable Nuxt's auto import
-  //   options: {
-  //     html: false // default true
-  //   },
-  //   plugins: {
-  //     mdc: false // default mdc options object
-  //     anchor: {
-  //       level: 2 // default 1
-  //     }
-  //   }
-  //   vueRuntimeCompiler: false // default true
-  // }
 
   // UnoCSS 配置
   unocss: {
@@ -126,18 +112,39 @@ export default defineNuxtConfig({
   // 应用设置
   app: {
     head: {
-      title: 'DevTT - Web开发解决方案',
+      title: 'Izoro - Nice Blog',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: '专业的Web和移动应用开发服务，为您的业务提供创新数字解决方案。' }
+        { name: 'description', content: 'Izoro - Nice Blog' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap' }
+      ],
+      script: [
+        {
+          src: 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js',
+          defer: true,
+          crossorigin: 'anonymous'
+        },
+        {
+          src: 'https://cdn.jsdelivr.net/npm/vue-router@4/dist/vue-router.global.prod.js',
+          defer: true,
+          // integrity: 'sha384-',
+          crossorigin: 'anonymous'
+        }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' }
+  },
+
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['vue', 'vue-router']
+      }
+    }
   },
 
   // 生产模式优化
