@@ -7,8 +7,8 @@
         <nuxt-icon name="arrow-up" :class="isCollapse ? 'rotate-180' : ''" />
       </span>
     </div>
-    <div ref="tocContainer" class="h-350px border-t-1px border-t-solid border-t-gray-200 transition-all"
-      :class="isCollapse ? 'h-0 px-0 pt-0 border-t-transparent' : 'py-4 pl-4'">
+    <div ref="tocContainer" class="border-t-1px border-t-solid border-t-gray-200 transition-all"
+      :class="isCollapse ? 'h-0 px-0 pt-0 border-t-transparent' : 'h-350px py-4 pl-4'">
       <ul class="h-full scrollbar-custom overflow-y-auto overflow-x-hidden">
         <li v-for="link in flatToc" :key="link.id" class="toc-item"
           :class="[{ 'is-actived': activeHeading === link.id }]" :style="{ 'padding-left': `${link.depth - 2}em` }"
