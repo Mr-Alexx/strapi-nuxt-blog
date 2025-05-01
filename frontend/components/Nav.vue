@@ -17,10 +17,17 @@
           </NuxtLink>
         </nav>
 
-        <!-- 语言切换 -->
-        <div class="relative group text-gray-500 text-14px">
+        <!-- 语言切换/暗黑模式切换 -->
+        <div class="flex gap-2 items-center text-gray-500 text-14px">
           <span class="flex items-center cursor-pointer hover:text-blue-600 transition-colors">
-            <span @click="switchLanguage(anotherLocale.code)">{{ anotherLocale.name }}</span>
+            <span @click="switchLanguage(anotherLocale.code)">
+              <nuxt-icon :name="anotherLocale.code === 'en-US' ? 'cn' : 'en'" />
+            </span>
+          </span>
+          <span class="flex items-center cursor-pointer hover:text-blue-600 transition-colors">
+            <span @click="switchMode($event, themeMode === 'light' ? 'dark' : 'light')">
+              <nuxt-icon :name="themeMode === 'dark' ? 'dark' : 'light'" />
+            </span>
           </span>
         </div>
       </div>
@@ -61,4 +68,56 @@ const navItems = [
   { path: '/projects', key: 'nav.projects' },
   { path: '/about', key: 'nav.about' },
 ]
+
+const themeMode = ref('light')
+// 暗黑模式切换
+// const switchMode = (mode) => {
+//   themeMode.value = mode
+//   localStorage.setItem('themeMode', mode)
+//   document.documentElement.classList.toggle('dark-mode')
+// }
+
+// 切换主题
+const switchMode = (event, mode) => {
+  // 检查浏览器是否支持 View Transition API
+  if (!document.startViewTransition) {
+    // 不支持则直接切换主题，不添加动画
+    document.documentElement.classList.toggle('dark-mode')
+    return
+  }
+  const transition = document.startViewTransition(() => {
+    document.documentElement.classList.toggle('dark-mode')
+  })
+
+  transition.ready.then(() => {
+    const { clientX, clientY } = event
+
+    const endRadius = Math.hypot(Math.max(clientX, innerWidth - clientX), Math.max(clientY, innerHeight - clientY))
+
+    const clipPath = [`circle(0px at ${clientX}px ${clientY}px)`, `circle(${endRadius}px at ${clientX}px ${clientY}px)`]
+
+    const isDark = document.documentElement.classList.contains('dark-mode')
+
+    document.documentElement.animate(
+      {
+        clipPath: isDark ? clipPath.reverse() : clipPath
+      },
+      {
+        duration: 450,
+        easing: 'ease-in-out',
+        pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)'
+      }
+    )
+
+    themeMode.value = mode
+    localStorage.setItem('themeMode', mode)
+  })
+}
+
+onMounted(() => {
+  const mode = localStorage.getItem('themeMode')
+  if (mode) {
+    switchMode(mode)
+  }
+})
 </script>
