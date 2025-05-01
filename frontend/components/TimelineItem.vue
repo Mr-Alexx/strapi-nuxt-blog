@@ -2,7 +2,7 @@
   <div>
     <!-- 年月 -->
     <div class="pl-100px">
-      <div class="timeline-yearmonth" :style="styles">
+      <div class="timeline-yearmonth" :style="{ background, color }">
         <span>{{ yearMonth }}</span>
       </div>
     </div>
@@ -11,10 +11,10 @@
     <div v-for="article in articles" :key="article.id" class="timeline-item">
       <div class="timeline-item__date">{{ Intl.DateTimeFormat(locale, { day: 'numeric' }).format(new
         Date(article.publishedAt)) }}</div>
-      <i class="timeline-item__dot" :style="{ borderColor: styles.background }"></i>
-      <div class="timeline-item__content" :style="{ borderLeftColor: styles.background }">
-        <i class="content-line" :style="{ borderColor: styles.background }"></i>
-        <NuxtLink :to="localePath(`/post/${article.slug}`)" class="link" :style="styles" target="__blank">
+      <i class="timeline-item__dot" :style="{ borderColor: background }"></i>
+      <div class="timeline-item__content" :style="{ borderLeftColor: background }">
+        <i class="content-line" :style="{ borderColor: background }"></i>
+        <NuxtLink :to="localePath(`/post/${article.slug}`)" class="link" :style="{ color, background }" target="__blank">
           <span>{{ article.title }}</span>
         </NuxtLink>
       </div>
@@ -24,6 +24,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { randomColor } from '@/utils'
 
 const { locale } = useI18n()
 const localePath = useLocalePath()
@@ -36,40 +37,25 @@ const props = defineProps({
   articles: {
     type: Array,
     required: true
+  },
+  background: {
+    type: String,
+    required: true,
+  },
+  color: {
+    type: String,
+    required: true
   }
 })
 
-const styles = ref({})
+// const styles = ref({})
 
-const isDarkColor = (r, g, b) => {
-  // 使用 W3C 推荐的亮度公式判断颜色深浅
-  const brightness = 0.299 * r + 0.587 * g + 0.114 * b
-  return brightness < 128
-}
+// onMounted(() => {
+//   const { background, color } = randomColor()
 
-/**
- * @description 生成随机颜色，如何是深色则字体色为白色，否则为黑色
- * @returns {Object} 返回颜色对象，包含背景色和文字色
- */
-const randomColor = () => {
-  // 生成随机的 RGB 值
-  const r = Math.floor(Math.random() * 256)
-  const g = Math.floor(Math.random() * 256)
-  const b = Math.floor(Math.random() * 256)
-
-  const background = `rgb(${r}, ${g}, ${b})`
-
-  const color = isDarkColor(r, g, b) ? '#fff' : '#000'
-
-  return { background, color }
-}
-
-onMounted(() => {
-  const { background, color } = randomColor()
-
-  styles.value.color = color
-  styles.value.background = background
-})
+//   styles.value.color = color
+//   styles.value.background = background
+// })
 
 </script>
 
