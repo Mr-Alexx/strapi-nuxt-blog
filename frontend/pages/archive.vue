@@ -11,7 +11,7 @@
 
     <!-- 按年月归档的文章列表 --> 
     <div v-for="(yearMonthData, yearMonth) in groupedArticles" :key="yearMonth">
-      <TimelineItem :yearMonth="yearMonth" :articles="yearMonthData" :key="yearMonth" />
+      <TimelineItem :yearMonth="yearMonth" :articles="yearMonthData.articles" :key="yearMonth" :background="yearMonthData.background" :color="yearMonthData.color" />
     </div>
     <div class="pl-100px">
       <div class="inline-flex px-4 py-1 text-xs translate-x--1/2 bg-dark-100 rounded-full text-white">{{$t('archive.start')}}</div>
@@ -22,7 +22,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-
+import { randomColor } from '@/utils'
 const { locale, t } = useI18n()
 const strapi = useStrapi()
 
@@ -76,14 +76,21 @@ const groupedArticles = computed(() => {
 
     // 确保年月对象存在
     if (!grouped[groupKey]) {
-      grouped[groupKey] = []
+      grouped[groupKey] = {
+        ...randomColor(),
+        articles: []
+      }
     }
 
     // 添加文章到对应的月份数组
-    grouped[groupKey].push(article)
+    grouped[groupKey].articles.push(article)
   })
-
+  
   return grouped
+})
+
+onMounted(() => {
+  console.log(groupedArticles.value)
 })
 
 // 设置页面元数据

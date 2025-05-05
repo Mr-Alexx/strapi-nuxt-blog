@@ -1,11 +1,14 @@
 <template>
   <div>
     <div class="grid grid-rows-1">
-      <NuxtLink v-for="(article, index) in articles" :key="article.id"
-        class="flex gap-4 bg-white pb-6"
-        :class="{'border-t border-gray-200 border-t-solid pt-6': index !== 0}"
+      <NuxtLink v-for="(article, index) in articles" :key="article.id" class="flex gap-4 bg-white pb-6"
+        :class="{ 'border-t border-gray-200 border-t-solid pt-6': index !== 0 }"
         :to="localePath(`/post/${article.slug}`)">
-        <LazyNuxtImg :src="article.image" class="w-30 h-30 object-cover rounded-lg" />
+        <div class="w-30 h-30">
+          <LazyNuxtImg v-if="article.image" :src="article.image" :alt="article.title"
+            class="w-full h-full object-cover rounded-lg" />
+          <div v-else class="w-full h-full bg-gray-200 rounded-lg"></div>
+        </div>
         <div class="flex-1">
           <div class="text-lg font-bold mb-2">{{ article.title }}</div>
           <div class="text-gray-600 mb-4">{{ article.description }}</div>
@@ -15,16 +18,10 @@
         </div>
       </NuxtLink>
     </div>
-    
+
     <!-- 加载更多组件 -->
-    <LoadMore 
-      :loading="pagination.loading" 
-      :has-more="pagination.hasMore" 
-      @load-more="loadMoreArticles" 
-      :total-items="articles.length"
-      theme="primary"
-      size="medium"
-    />
+    <LoadMore :loading="pagination.loading" :has-more="pagination.hasMore" @load-more="loadMoreArticles"
+      :total-items="articles.length" theme="primary" size="medium" />
   </div>
 </template>
 
@@ -60,7 +57,7 @@ const fetchArticles = async (page, isServerSide = false) => {
     if (!isServerSide) {
       pagination.loading = true
     }
-    
+
     const { data, meta } = await strapi.find('articles', {
       filters: {
         locale: locale.value
@@ -71,7 +68,7 @@ const fetchArticles = async (page, isServerSide = false) => {
       },
       sort: ['publishedAt:desc']
     })
-    
+
     // 更新分页信息
     Object.assign(pagination, {
       current: page,
@@ -79,7 +76,7 @@ const fetchArticles = async (page, isServerSide = false) => {
       pageCount: meta.pagination.pageCount,
       hasMore: page < meta.pagination.pageCount
     })
-    
+    console.log(pagination)
     return data
   } catch (error) {
     console.error(`${isServerSide ? '服务端' : '客户端'}加载文章失败:`, error)
@@ -93,7 +90,7 @@ const fetchArticles = async (page, isServerSide = false) => {
 
 // 服务端预取首页数据
 const { data: initialData, refresh } = await useAsyncData(
-  'home-articles', 
+  'home-articles',
   async () => {
     pagination.loading = true
     const data = await fetchArticles(1, true)
@@ -118,15 +115,15 @@ const articles = computed(() => {
 // 加载更多文章
 const loadMoreArticles = async () => {
   if (pagination.loading || !pagination.hasMore) return
-  
+
   const nextPage = pagination.current + 1
   const moreArticles = await fetchArticles(nextPage)
-  
+
   // 初始化 articlesList（如果为空）
   if (articlesList.length === 0 && initialData.value) {
     articlesList.push(...initialData.value)
   }
-  
+
   // 添加新加载的文章
   if (moreArticles.length > 0) {
     articlesList.push(...moreArticles)
