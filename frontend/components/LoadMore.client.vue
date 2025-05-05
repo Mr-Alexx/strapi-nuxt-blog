@@ -2,7 +2,7 @@
   <div class="load-more-container">
     <!-- 插槽内容：显示列表项 -->
     <slot></slot>
-    
+
     <!-- 观察元素：当这个元素进入视口时触发加载 -->
     <div ref="observerTarget" class="observer-target" v-show="hasMore">
       <!-- 加载中状态 -->
@@ -10,18 +10,14 @@
         <div class="loading-spinner" :class="[`theme-${theme}`, `size-${size}`]"></div>
         <span class="loading-text">{{ $t('loadMore.loading') }}</span>
       </div>
-      
+
       <!-- 手动加载按钮（可选） -->
-      <button 
-        v-else-if="manualLoad" 
-        @click="$emit('load-more')" 
-        class="load-more-btn"
-        :class="[`theme-${theme}`, `size-${size}`]"
-      >
+      <button v-else-if="manualLoad" @click="$emit('load-more')" class="load-more-btn"
+        :class="[`theme-${theme}`, `size-${size}`]">
         {{ $t('loadMore.loadMore') }}
       </button>
     </div>
-    
+
     <!-- 全部加载完毕 -->
     <div v-if="!hasMore && !loading" class="no-more">
       {{ $t('loadMore.noMore') }}
@@ -31,6 +27,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue'
+console.log('loadMore.client.vue')
 
 const { t } = useI18n()
 
@@ -106,7 +103,7 @@ const setupObserver = () => {
   if (observer) {
     observer.disconnect()
   }
-  
+
   // 创建新的观察者
   observer = new IntersectionObserver((entries) => {
     // 当目标元素进入视口
@@ -121,7 +118,7 @@ const setupObserver = () => {
     rootMargin: '0px 0px 200px 0px', // 下方增加200px提前触发
     threshold: props.threshold // 触发阈值
   })
-  
+
   // 开始观察目标元素
   if (observerTarget.value) {
     observer.observe(observerTarget.value)
@@ -241,9 +238,11 @@ onUnmounted(() => {
     transform: rotate(0deg);
     opacity: 0.8;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: rotate(360deg);
     opacity: 0.8;
@@ -313,4 +312,4 @@ onUnmounted(() => {
   color: #999;
   font-size: 14px;
 }
-</style> 
+</style>

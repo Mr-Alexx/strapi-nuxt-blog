@@ -1,5 +1,5 @@
 <template>
-  <footer class="m-block-10">
+  <footer class="m-block-10 lt-md:mb-10">
     <div class="mx-auto text-center text-gray-500 text-sm">
       <p>{{ $t('copyright', { year: yearStr }) }}</p>
     </div>
