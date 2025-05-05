@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-04-01',
   devtools: { enabled: true },
+  devServer: {
+    port: 5555,
+    host: '0.0.0.0'
+  },
 
   // 添加需要的模块
   modules: [
@@ -9,13 +13,13 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/strapi',
-    "@nuxt/image",
-    "nuxt-icons"
+    '@nuxt/image',
+    'nuxt-icons'
+    // '@nuxt/content'
   ],
-
   mdc: {
     components: {
-      prose: true,  // 启用 Markdown 渲染的散文组件，支持渲染段落、标题等
+      prose: true // 启用 Markdown 渲染的散文组件，支持渲染段落、标题等
     },
     headings: {
       anchorLinks: {
@@ -26,7 +30,7 @@ export default defineNuxtConfig({
       }
     },
     highlight: {
-      theme: 'monokai',  // 选择高亮主题，可以选择其他如 'github'、'dracula' 等
+      theme: 'monokai' // 选择高亮主题，可以选择其他如 'github'、'dracula' 等
     }
   },
 
@@ -38,15 +42,15 @@ export default defineNuxtConfig({
     attributify: true,
     // 自定义规则
     shortcuts: {
-      'btn': 'py-2 px-4 font-semibold rounded-lg shadow-md transition-all duration-200',
+      btn: 'py-2 px-4 font-semibold rounded-lg shadow-md transition-all duration-200',
       'btn-primary': 'bg-blue-600 text-white hover:bg-blue-700',
       'btn-secondary': 'bg-gray-100 text-gray-800 hover:bg-gray-200',
-      'card': 'bg-white rounded-lg shadow-md overflow-hidden',
+      card: 'bg-white rounded-lg shadow-md overflow-hidden',
       'section-title': 'text-3xl font-bold mb-6 text-gray-900',
       'container-custom': 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
       'nav-link': 'text-gray-700 hover:text-blue-600 transition-colors duration-200',
       'nav-link-active': 'text-blue-600 font-medium',
-      'footer-link': 'text-gray-400 hover:text-white transition-colors duration-200',
+      'footer-link': 'text-gray-400 hover:text-white transition-colors duration-200'
     },
     theme: {
       colors: {
@@ -61,13 +65,13 @@ export default defineNuxtConfig({
           700: '#0369a1',
           800: '#075985',
           900: '#0c4a6e',
-          950: '#082f49',
-        },
+          950: '#082f49'
+        }
       },
       fontFamily: {
-        sans: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-      },
-    },
+        sans: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+      }
+    }
   },
 
   // i18n 配置
@@ -105,9 +109,7 @@ export default defineNuxtConfig({
   },
 
   // 添加全局CSS
-  css: [
-    '@/assets/styles/main.css',
-  ],
+  css: ['@/assets/styles/main.css'],
 
   // 应用设置
   app: {
@@ -120,7 +122,10 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap' }
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
+        }
       ],
       script: [
         {

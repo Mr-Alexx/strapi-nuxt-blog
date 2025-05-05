@@ -18,13 +18,13 @@
 }
 
 /* 反色 - 暗黑模式 - 作用域html标签就可以实现暗黑/亮色切换 */
-.dark-mode {
+.dark {
   filter: invert(1) hue-rotate(180deg);
 }
-.dark-mode img,
-.dark-mode video,
-.dark-mode .logo,
-.dark-mode .icon {
+.dark img,
+.dark video,
+.dark .logo,
+.dark .icon {
   filter: invert(1) hue-rotate(180deg);
 }
 
@@ -42,11 +42,11 @@
   z-index: 2147483646;
 }
 
-html.dark-mode::view-transition-old(root) {
+html.dark::view-transition-old(root) {
   z-index: 2147483646;
 }
 
-html.dark-mode::view-transition-new(root) {
+html.dark::view-transition-new(root) {
   z-index: 1;
 }
 
@@ -120,6 +120,10 @@ textarea:focus,
 select:focus {
   border-color: var(--color-primary-light);
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+img {
+  vertical-align: middle;
 }
 
 /* 页面过渡动画 */
